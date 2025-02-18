@@ -1,0 +1,38 @@
+
+import java.util.*;
+public class numberComaparator {
+    public static void main(String args[]){
+        int minRange=10;
+        int maxRange=100;
+        int numCount=10;
+       ArrayList<Integer>randomNumbers= generateRandomNumbers(minRange,maxRange,numCount);
+       System.out.println("Random numbers generated");
+       System.out.println(randomNumbers);
+       Collections.sort(randomNumbers,new TensPlaceComparator());
+       System.out.println("\n Random numbers sorted according to tens place:");
+       System.out.println(randomNumbers);
+       
+    }
+   public static ArrayList<Integer> gnerateRandomNumbers(int minRange,maxRange, int numCount){
+       ArrayList<Integer> randomNumbers = new ArrayList<>();
+       Random random = new Random();
+       for(int i =0; i< numCount ; i++){
+           int randomNumber;
+           do{
+               randomNumber = random.nextInt(maxRange-minRange+1)+minRange;
+           
+                       
+           }while(randomNumber%2!=0||randomNumber%5!=0);
+           randomNumbers.add(randomNumber);
+           
+       }
+       return randomNumbers;;
+   }
+   static class TensPlaceComparator implements Comparator<Integer>{
+       public int compare(Integer num1 , Integer num2)
+       {
+           return Integer.compare(num1%100/10,num2%100/10);
+       }
+   }
+}
+
